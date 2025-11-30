@@ -1,17 +1,29 @@
 pipeline {
     agent any
-    environment {
-        NEW_VEERSION = '1.3.0'
 
-    }    
+    tools {
+        maven 'Maven'
+    }
+
+    environment {
+        // variables defined here can be used in any stage
+        NEW_VERSION = '1.3.0'
+    }
 
     stages {
-        stage('Build') {
+        stage('build') {
             steps {
-                echo 'Building...'
-                // Add your build commands here
+                echo 'Building Project'
+                
+                // Using environment variable
+                echo "Building version ${NEW_VERSION}"
+                
+                // Example shell command
+                sh "mvn install"
             }
         }
+    }
+
 
         stage('Test') {
             steps {
