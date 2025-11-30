@@ -11,19 +11,14 @@ pipeline {
     }
 
     stages {
-        stage('build') {
+
+        stage('Build') {
             steps {
                 echo 'Building Project'
-                
-                // Using environment variable
                 echo "Building version ${NEW_VERSION}"
-                
-                // Example shell command
                 sh "mvn install"
             }
         }
-    }
-
 
         stage('Test') {
             steps {
@@ -38,4 +33,6 @@ pipeline {
                 // Add your deployment commands here
             }
         }
+
+    }
 }
